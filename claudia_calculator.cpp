@@ -109,3 +109,20 @@ class ClaudiaCalc {
                     std::cout << "Register " << reg << " cleared" << std::endl;
                     displayRegisters();
                     break;
+                }
+                case 'm':
+                    displayMenu();
+                    break;
+                case 'p':
+                    displayRegisters();
+                    break;
+                case 'q':
+                    running = false;
+                    spdlog::info("ClaudiaCalc exited");
+                    std::cout << "Exiting ClaudiaCalc. Goodbye!" << std::endl;
+                    break;
+                default:
+                    spdlog::warn("Invalid command entered: {}", command);
+                    std::cout << "Invalid command. Press 'm' for menu." << std::endl;
+            }
+            
