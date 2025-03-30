@@ -93,3 +93,19 @@ class ClaudiaCalc {
                     }
                     break;
                 }
+                case 'a': case 'b': case 'c': case 'd': {
+                    double value;
+                    std::cout << "Enter a value for register " << command << ": ";
+                    std::cin >> value;
+                    getRegister(command) = value;
+                    spdlog::info("Value {} set to register {}", value, command);
+                    displayRegisters();
+                    break;
+                }
+                case '1': case '2': case '3': case '4': {
+                    char reg = 'a' + (command - '1');
+                    getRegister(reg) = 0.000;
+                    spdlog::info("Register {} cleared", reg);
+                    std::cout << "Register " << reg << " cleared" << std::endl;
+                    displayRegisters();
+                    break;
