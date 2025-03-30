@@ -25,3 +25,22 @@ class ClaudiaCalc {
         spdlog::info("Registers updated: A={}, B={}, C={}, D={}", a_number, b_number, c_number, d_number);
     }
     
+    void displayMenu() const {
+        drawLine();
+        std::cout << std::setw(58) << "ClaudiaCalc" << std::endl;
+        drawLine();
+        displayRegisters();
+        drawLine();
+        std::cout << "+        Add" << std::endl;
+        std::cout << "-        Subtract" << std::endl;
+        std::cout << "*        Multiply" << std::endl;
+        std::cout << "/        Divide" << std::endl;
+        std::cout << "a-d      Enter a number or string for A,B,C,D" << std::endl;
+        std::cout << "1-4      Clear register A,B,C,D" << std::endl;
+        std::cout << "m        Prints the menu" << std::endl;
+        std::cout << "p        Prints the registers" << std::endl;
+        std::cout << "q        Quits the app" << std::endl;
+        drawLine();
+        spdlog::info("Menu displayed");
+    }
+    
