@@ -14,3 +14,14 @@ class ClaudiaCalc {
         void drawLine() const {
             std::cout << std::string(114, '-') << std::endl;
         }
+
+            
+    void displayRegisters() const {
+        std::cout << std::setprecision(3) << std::fixed;
+        std::cout << "        A number = " << a_number;
+        std::cout << "                B number = " << b_number;
+        std::cout << "                C number = " << c_number;
+        std::cout << "                D number = " << d_number << std::endl;
+        spdlog::info("Registers updated: A={}, B={}, C={}, D={}", a_number, b_number, c_number, d_number);
+    }
+    
