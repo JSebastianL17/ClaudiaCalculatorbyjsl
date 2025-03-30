@@ -53,3 +53,8 @@ class ClaudiaCalc {
             default: return a_number;
         }
     }
+
+    public:
+    void run() {
+        spdlog::info("ClaudiaCalc started");
+        displayMenu();
