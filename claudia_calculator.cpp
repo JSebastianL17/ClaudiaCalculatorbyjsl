@@ -78,3 +78,18 @@ class ClaudiaCalc {
                     lhs = tolower(lhs);
                     rhs = tolower(rhs);
                     
+                    if (command == '/' && getRegister(rhs) == 0) {
+                        spdlog::error("Division by zero attempted");
+                        std::cout << "Error: Division by zero." << std::endl;
+                    } else {
+                        switch (command) {
+                            case '+': a_number = getRegister(lhs) + getRegister(rhs); break;
+                            case '-': a_number = getRegister(lhs) - getRegister(rhs); break;
+                            case '*': a_number = getRegister(lhs) * getRegister(rhs); break;
+                            case '/': a_number = getRegister(lhs) / getRegister(rhs); break;
+                        }
+                        spdlog::info("Operation {} between {} and {}", command, lhs, rhs);
+                        displayRegisters();
+                    }
+                    break;
+                }
