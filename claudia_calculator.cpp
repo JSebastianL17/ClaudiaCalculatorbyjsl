@@ -126,3 +126,16 @@ class ClaudiaCalc {
                     std::cout << "Invalid command. Press 'm' for menu." << std::endl;
             }
             
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+};
+
+int main() {
+    std::cout << std::fixed << std::setprecision(3);
+    spdlog::info("Application started");
+    ClaudiaCalc calculator;
+    calculator.run();
+    return 0;
+}
