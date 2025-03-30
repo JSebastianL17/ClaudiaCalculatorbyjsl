@@ -44,3 +44,12 @@ class ClaudiaCalc {
         spdlog::info("Menu displayed");
     }
     
+    double& getRegister(char reg) {
+        switch(reg) {
+            case 'a': return a_number;
+            case 'b': return b_number;
+            case 'c': return c_number;
+            case 'd': return d_number;
+            default: return a_number;
+        }
+    }
