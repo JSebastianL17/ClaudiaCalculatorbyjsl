@@ -58,3 +58,23 @@ class ClaudiaCalc {
     void run() {
         spdlog::info("ClaudiaCalc started");
         displayMenu();
+
+        char command;
+        bool running = true;
+        
+        while (running) {
+            std::cout << "Enter a command: ";
+            std::cin >> command;
+            command = tolower(command);
+            
+            switch(command) {
+                case '+': case '-': case '*': case '/': {
+                    char lhs, rhs;
+                    std::cout << "Enter a lhs register: ";
+                    std::cin >> lhs;
+                    std::cout << "Enter a rhs register: ";
+                    std::cin >> rhs;
+                    
+                    lhs = tolower(lhs);
+                    rhs = tolower(rhs);
+                    
