@@ -9,7 +9,14 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-L", "C:/msys64/ucrt64/lib",
+                "-I", "C:/msys64/ucrt64/include",
+                "-lfmt",
+                "-DSPDLOG_FMT_EXTERNAL",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-v"
             ],
             "options": {
                 "cwd": "${fileDirname}"
