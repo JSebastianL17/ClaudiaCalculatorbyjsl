@@ -4,7 +4,7 @@
 #include "Register.h"
 #include <string>
 
-const int LINE_WIDTH = 114;
+inline const int LINE_WIDTH = 114; 
 
 class ClaudiaCalc {
 private:

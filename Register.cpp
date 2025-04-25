@@ -1,8 +1,8 @@
 #include "Register.h"
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <cmath>
-#include <iomanip>
 
 Register::Register() : number(0.0), str(""), type(NUMBER) {}
 
@@ -25,17 +25,9 @@ void Register::clear() {
     type = NUMBER;
 }
 
-RegType Register::getType() const {
-    return type;
-}
-
-float Register::getNumber() const {
-    return number;
-}
-
-const std::string& Register::getString() const {
-    return str;
-}
+RegType Register::getType() const { return type; }
+float Register::getNumber() const { return number; }
+const std::string& Register::getString() const { return str; }
 
 std::string Register::toString() const {
     if (type == NUMBER) {
@@ -45,6 +37,12 @@ std::string Register::toString() const {
     } else {
         return str;
     }
+}
+
+std::string Register::toDisplayString(char regName) const {
+    std::ostringstream ss;
+    ss << regName << " " << (type == NUMBER ? "number = " : "string = ") << toString();
+    return ss.str();
 }
 
 void Register::add(const Register& other) {
@@ -60,7 +58,7 @@ void Register::add(const Register& other) {
 void Register::subtract(const Register& other) {
     if (type == STRING && other.type == STRING) {
         size_t pos = str.find(other.str);
-        if (pos != std::string::npos && (other.str.size() == 1 || str.substr(pos, other.str.size()) == other.str)) {
+        if (pos != std::string::npos) {
             str.erase(pos, other.str.size());
         }
     } else if (type == NUMBER && other.type == NUMBER) {

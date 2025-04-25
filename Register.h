@@ -20,6 +20,8 @@ public:
     float getNumber() const;
     const std::string& getString() const;
     std::string toString() const;
+    std::string toDisplayString(char regName) const; // 👈 nueva función
+
     void add(const Register& other);
     void subtract(const Register& other);
     void multiply(const Register& other);
