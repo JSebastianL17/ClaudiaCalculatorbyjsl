@@ -1,132 +1,12 @@
-// ClaudiaCalc Part 2 - Complete C++ Implementation with OOP and String Support
-
+#include "Register.h"
 #include <iostream>
 #include <iomanip>
 #include <limits>
 #include <string>
-#include <cmath>
-#include <sstream>
 
 using namespace std;
 
 const int LINE_WIDTH = 114;
-
-enum RegType { NUMBER, STRING };
-
-class Register {
-private:
-    float number;
-    string str;
-    RegType type;
-
-public:
-    Register() : number(0.0), str(""), type(NUMBER) {}
-
-    void setValue(const string& input) {
-        try {
-            size_t idx;
-            float val = stof(input, &idx);
-            if (idx != input.size()) throw invalid_argument("not pure number");
-            number = val;
-            type = NUMBER;
-        } catch (...) {
-            str = input;
-            type = STRING;
-        }
-    }
-
-    void clear() {
-        number = 0.0;
-        str = "";
-        type = NUMBER;
-    }
-
-    RegType getType() const { return type; }
-    float getNumber() const { return number; }
-    const string& getString() const { return str; }
-
-    string toString() const {
-        if (type == NUMBER) {
-            ostringstream ss;
-            ss << fixed << setprecision(3) << number;
-            return ss.str();
-        } else {
-            return str;
-        }
-    }
-
-    // String-specific operations
-    void add(const Register& other) {
-        if (type == STRING && other.type == STRING) {
-            str += other.str;
-        } else if (type == NUMBER && other.type == NUMBER) {
-            number += other.number;
-        } else {
-            cout << "Error: Invalid addition between number and string." << endl;
-        }
-    }
-
-    void subtract(const Register& other) {
-        if (type == STRING && other.type == STRING) {
-            size_t pos = str.find(other.str);
-            if (pos != string::npos && (other.str.size() == 1 || str.substr(pos, other.str.size()) == other.str)) {
-                str.erase(pos, other.str.size());
-            } // else: keep original string
-        } else if (type == NUMBER && other.type == NUMBER) {
-            number -= other.number;
-        } else {
-            cout << "Error: Invalid subtraction between number and string." << endl;
-        }
-    }
-
-    void multiply(const Register& other) {
-        if (type == NUMBER && other.type == NUMBER) {
-            number *= other.number;
-        } else if (type == STRING && other.type == NUMBER) {
-            int times = floor(other.number);
-            if (times < 0) {
-                cout << "Error: Cannot multiply string by negative number." << endl;
-                return;
-            }
-            string result;
-            for (int i = 0; i < times; ++i) result += str;
-            str = result;
-        } else if (type == NUMBER && other.type == STRING) {
-            int times = floor(number);
-            if (times < 0) {
-                cout << "Error: Cannot multiply string by negative number." << endl;
-                return;
-            }
-            string result;
-            for (int i = 0; i < times; ++i) result += other.str;
-            type = STRING;
-            str = result;
-        } else if (type == STRING && other.type == STRING) {
-            string result;
-            for (char c1 : str) {
-                for (char c2 : other.str) {
-                    result += c1;
-                    result += c2;
-                }
-            }
-            str = result;
-        } else {
-            cout << "Error: Invalid multiplication." << endl;
-        }
-    }
-
-    void divide(const Register& other) {
-        if (type == NUMBER && other.type == NUMBER) {
-            if (other.number == 0.0f) {
-                cout << "Error: Division by zero." << endl;
-                return;
-            }
-            number /= other.number;
-        } else {
-            cout << "Error: Invalid division operation." << endl;
-        }
-    }
-};
 
 class ClaudiaCalc {
 private:
@@ -220,9 +100,3 @@ public:
         }
     }
 };
-
-int main() {
-    ClaudiaCalc calc;
-    calc.run();
-    return 0;
-}

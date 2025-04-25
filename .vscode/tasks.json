@@ -10,6 +10,7 @@
           "-g",
           "main.cpp",
           "ClaudiaCalc.cpp",
+          "Register.cpp",
           "-o",
           "ClaudiaCalc.exe",
           "-L", "C:/msys64/ucrt64/lib",
